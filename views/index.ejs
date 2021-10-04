@@ -1,0 +1,33 @@
+<%- include('layout/header.ejs') %>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <% if (message) { %>
+             <div class="alert alert-dismissible fade show alert-<%= message.type %>" role="alert">
+                 <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+                 <strong><%= message.message %></strong>
+             </div>
+            <% } %>
+            <div class="container my-4 image-container" style="height: 100%; display: flex; justify-content: space-evenly; align-items: center; flex-wrap: wrap; padding: 0 50px; flex-grow: 1 1 0;">
+                <% if (users != '') { %>
+                    <% users.forEach((user, index) => { %>
+                        <a href="/show/<%= user._id %>">
+                            <div style="border: 2px solid gray;">
+                                <img src="<%= user.image %>" width="300" height="180" class="rounded mx-auto d-block" alt="<%= index %>">
+                            </div>
+                        </a>
+                    <% }) %>
+                    <!-- <a href="" class="text-success"><i class="fas fa-edit fa-lg mx-1"></i></a> -->
+                    <!-- <a href="" class="text-danger"><i class="fas fa-trash fa-lg mx-1"></i></a> -->
+                <% } else { %>
+                    <h1 class="text-center text-secondary mt-5">
+                        No users found in the database!
+                    </h1>
+                <% } %> 
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('layout/footer.ejs') %> 
